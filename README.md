@@ -22,18 +22,19 @@ from sklearn.metrics import accuracy_score
 ### Step 2: Load and Clean Dataset
 - *Dataset*: The dataset used in this project is Creditcard_data.csv.
 - *Data Cleaning*: Replace any erroneous or placeholder values.
-python
+```python
 # Load the dataset
 data = pd.read_csv('Creditcard_data.csv')
 
 # Replace erroneous data (example of data cleaning)
-data = data.replace('shivane kapoor', 'shivane kapoor')
+data = data.replace('lakshit gupta', 'lakshit gupta')
+```
 
 
 ### Step 3: Handle Class Imbalance Using SMOTE
 - Separate the dataset into features and target variable.
 - Apply SMOTE to generate a balanced dataset.
-python
+```python
 # Split the dataset into features and target variable
 y = data['Class']
 x = data.drop('Class', axis=1)
@@ -47,7 +48,7 @@ balanced_data = pd.concat([
     pd.DataFrame(x_smote, columns=x.columns),
     pd.DataFrame(y_smote, columns=['Class'])
 ], axis=1)
-
+```
 
 ### Step 4: Generate Samples Using Different Strategies
 1. *Random Sampling*: Select a random fraction of the data.
@@ -55,7 +56,7 @@ balanced_data = pd.concat([
 3. *Systematic Sampling*: Select samples at regular intervals.
 4. *Cluster Sampling*: Divide data into clusters and sample one cluster.
 5. *Bootstrap Sampling*: Generate a sample with replacement.
-python
+```python
 # Random Sampling
 sample1 = balanced_data.sample(frac=0.2, random_state=42)
 
@@ -77,7 +78,7 @@ sample4 = balanced_data[balanced_data['Cluster'] == selected_cluster].drop('Clus
 
 # Bootstrap Sampling
 sample5 = balanced_data.sample(n=int(0.2 * len(balanced_data)), replace=True, random_state=42)
-
+```
 
 ### Step 5: Define and Train Machine Learning Models
 - Models used:
@@ -87,7 +88,7 @@ sample5 = balanced_data.sample(n=int(0.2 * len(balanced_data)), replace=True, ra
   - Support Vector Machine (SVM)
   - k-Nearest Neighbors (k-NN)
 - Evaluate the performance of each model on different samples.
-python
+```python
 # Define models
 models = {
     "Logistic Regression": LogisticRegression(max_iter=500),
@@ -115,19 +116,19 @@ for model_name, model in models.items():
         predictions = model.predict(X_test)
         accuracy = accuracy_score(y_test, predictions)
         results[model_name].append(accuracy)
-
+```
 
 ### Step 6: Save and Display Results
 - Store model accuracies in a CSV file.
 - Print results for quick reference.
-python
+```python
 # Save results to a CSV file
 results_df = pd.DataFrame(results, index=["Sample1", "Sample2", "Sample3", "Sample4", "Sample5"])
 results_df.to_csv("model_accuracies.csv")
 
 # Print results for quick reference
 print("Model accuracies saved to 'model_accuracies.csv'")
-
+```
 
 ## Results Summary
 - Each sample was evaluated using the five machine learning models.
@@ -143,9 +144,9 @@ print("Model accuracies saved to 'model_accuracies.csv'")
 ## How to Run the Code
 1. Ensure the dataset Creditcard_data.csv is in the working directory.
 2. Install necessary libraries if not already installed:
-   bash
+  ``` bash
    pip install pandas numpy matplotlib scikit-learn imbalanced-learn
-   
+   ```
 3. Run the script to generate model_accuracies.csv and print the results.
 
 ## Conclusion
