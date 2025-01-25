@@ -5,7 +5,7 @@ This project implements a credit card fraud detection system using machine learn
 ## Project Workflow
 
 ### Step 1: Import Required Libraries
-python
+```python
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -17,7 +17,7 @@ from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.svm import SVC
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
-
+```
 
 ### Step 2: Load and Clean Dataset
 - *Dataset*: The dataset used in this project is Creditcard_data.csv.
